@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nana Data Hub — MTN data bundle order enquiries in Ghana.">
+  <title>Nana Data Hub | MTN Data Orders</title>
+  <style>
+    :root { --navy:#10243a; --gold:#f2b632; --paper:#f5f7fa; --green:#16834b; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,sans-serif; color:var(--navy); background:var(--paper); line-height:1.55; }
+    header { background:var(--navy); color:white; padding:28px 18px; text-align:center; }
+    header .mark { display:inline-grid; place-items:center; width:54px; height:54px; border-radius:16px; background:var(--gold); color:var(--navy); font-weight:800; font-size:22px; }
+    h1 { margin:12px 0 4px; font-size:clamp(28px,5vw,42px); }
+    header p { margin:0; color:#e1e9f1; }
+    main { width:min(920px,92%); margin:28px auto; }
+    .intro,.panel,.package { background:white; border-radius:16px; padding:22px; box-shadow:0 5px 22px #10243a12; margin-bottom:18px; }
+    .intro { border-left:5px solid var(--gold); }
+    h2 { margin-top:0; }
+    .packages { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+    .package h3 { margin:0 0 8px; }
+    .tag { display:inline-block; background:#fff4d8; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold; }
+    .muted { color:#5e6b78; font-size:14px; }
+    label { display:block; font-weight:bold; margin:12px 0 5px; }
+    input,select,textarea { width:100%; padding:12px; border:1px solid #cbd4de; border-radius:9px; font:inherit; }
+    button,.cta { display:inline-block; background:var(--green); color:white; border:0; padding:13px 18px; border-radius:9px; font-weight:bold; text-decoration:none; cursor:pointer; margin-top:14px; }
+    footer { text-align:center; padding:24px; color:#5e6b78; font-size:13px; }
+    .notice { background:#fff8e7; border:1px solid #f0d48a; padding:12px; border-radius:10px; font-size:14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="mark">NDH</div>
+    <h1>Nana Data Hub</h1>
+    <p>Simple MTN data bundle order enquiries in Ghana</p>
+  </header>
+  <main>
+    <section class="intro">
+      <h2>Welcome to Nana Data Hub</h2>
+      <p>Choose a package category and send an order enquiry through WhatsApp. We will confirm availability, price and delivery details before you pay.</p>
+      <p class="notice"><strong>Important:</strong> This is an order-enquiry website, not an automatic payment or data-delivery system. Only pay after the business confirms the order and provides verified payment details.</p>
+    </section>
+
+    <section class="panel">
+      <h2>MTN data packages</h2>
+      <div class="packages">
+        <article class="package"><span class="tag">Package 1</span><h3>Starter</h3><p class="muted">Add a supplier-confirmed data size, price and validity before publishing.</p></article>
+        <article class="package"><span class="tag">Package 2</span><h3>Standard</h3><p class="muted">Add a supplier-confirmed data size, price and validity before publishing.</p></article>
+        <article class="package"><span class="tag">Package 3</span><h3>Plus</h3><p class="muted">Add a supplier-confirmed data size, price and validity before publishing.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Send an order enquiry</h2>
+      <form id="orderForm">
+        <label for="customer">Your name</label>
+        <input id="customer" required placeholder="Enter your name">
+        <label for="phone">Phone number to receive data</label>
+        <input id="phone" required inputmode="tel" placeholder="e.g. 05XXXXXXXX">
+        <label for="package">Package requested</label>
+        <select id="package" required>
+          <option value="">Choose a package</option>
+          <option>Starter (confirm size and price)</option>
+          <option>Standard (confirm size and price)</option>
+          <option>Plus (confirm size and price)</option>
+        </select>
+        <label for="notes">Additional details (optional)</label>
+        <textarea id="notes" rows="3" placeholder="Any extra information"></textarea>
+        <button type="submit">Send enquiry on WhatsApp</button>
+      </form>
+      <p class="muted">Your enquiry opens WhatsApp. No payment information is collected on this website.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Contact</h2>
+      <p>WhatsApp order enquiries: <strong>0257308918</strong></p>
+      <p class="muted">Business hours and final package prices will be added after confirmation with the supplier.</p>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> Nana Data Hub. Independent reseller enquiry service; not an official MTN website.</footer>
+  <script>
+    const BUSINESS_WHATSAPP = "233257308918";
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("customer").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const pack = document.getElementById("package").value;
+      const notes = document.getElementById("notes").value.trim();
+      const message = `Hello Nana Data Hub. I want to enquire about an MTN data order.%0AName: ${encodeURIComponent(name)}%0AReceiving number: ${encodeURIComponent(phone)}%0APackage: ${encodeURIComponent(pack)}%0ANotes: ${encodeURIComponent(notes)}`;
+      window.open(`https://wa.me/${BUSINESS_WHATSAPP}?text=${message}`, "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>
