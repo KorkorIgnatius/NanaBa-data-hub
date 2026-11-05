@@ -125,7 +125,7 @@ Additional details: ${notes}`;
     const whatsappUrl =
       `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(message)}`;
 
-    window.open(whatsappUrl, "_blank");
+    window.location.href = whatsappUrl;
   });
 </script>
   });
