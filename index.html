@@ -90,6 +90,34 @@
       const message = `Hello Nana Data Hub. I want to enquire about an MTN data order.%0AName: ${encodeURIComponent(name)}%0AReceiving number: ${encodeURIComponent(phone)}%0APackage: ${encodeURIComponent(pack)}%0ANotes: ${encodeURIComponent(notes)}`;
       window.open(`https://wa.me/${BUSINESS_WHATSAPP}?text=${message}`, "_blank", "noopener");
     });
+  </script><script>
+  const BUSINESS_WHATSAPP = "233257308918";
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  document.getElementById("orderForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customer").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const pack = document.getElementById("package").value;
+    const notes = document.getElementById("notes").value.trim();
+
+    const message = `Hello Nana Data Hub!
+
+I want to enquire about an MTN data order.
+
+Name: ${name}
+Receiving number: ${phone}
+Package: ${pack}
+Additional details: ${notes}`;
+
+    const whatsappUrl =
+      `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, "_blank");
+  });
   </script>
 </body>
 </html>
